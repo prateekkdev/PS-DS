@@ -361,4 +361,107 @@ public class ProblemsTest {
 
         return new Pair<>(num % 10 == 8, value);
     }
+
+    @Test
+    // http://codingbat.com/prob/p158888
+    public void testPowerN() {
+
+        assertEquals(1, powerN(3, 0));
+        assertEquals(1, powerN(1, 5));
+        assertEquals(0, powerN(0, 0));
+        assertEquals(4, powerN(2, 2));
+        assertEquals(81, powerN(3, 4));
+
+    }
+
+    public int powerN(int n, int m) {
+
+        if (n == 0) {
+            return 0;
+        }
+
+        if (m == 0) {
+            return 1;
+        }
+
+        return n * powerN(n, m - 1);
+
+    }
+
+    @Test
+    public void testCountX() {
+
+        assertEquals(0, countX("hello"));
+        assertEquals(1, countX("GoogleX"));
+        assertEquals(1, countX("xXx"));
+        assertEquals(3, countX("HellNoXXDptxX"));
+
+    }
+
+    public int countX(String str) {
+        return getCountX(str, 0);
+    }
+
+    public int getCountX(String str, int currentChar) {
+
+        if (currentChar >= str.length()) {
+            return 0;
+        }
+
+        return (str.charAt(currentChar) == 'X' ? 1 : 0) + getCountX(str, ++currentChar);
+    }
+
+    @Test
+    public void testCountHi() {
+        assertEquals(0, countHi("hello"));
+        assertEquals(0, countHi(""));
+        assertEquals(0, countHi("HI"));
+        assertEquals(1, countHi("Hi"));
+        assertEquals(1, countHi("Hi5"));
+        assertEquals(3, countHi("helloHihelloHiByeAgainHiThere"));
+    }
+
+    public int countHi(String str) {
+        return getCountHi(str, 0);
+    }
+
+    public int getCountHi(String str, int currentChar) {
+
+        // We ought to see two chars in the end.
+        if (currentChar >= str.length() - 1) {
+            return 0;
+        }
+
+        return (str.charAt(currentChar) == 'H' && str.charAt(currentChar + 1) == 'i' ? 1 : 0)
+                + getCountHi(str, ++currentChar);
+    }
+
+    @Test
+    public void testChangeXY() {
+
+        assertEquals("hey", changeXY("hey"));
+        assertEquals("y-mas", changeXY("x-mas"));
+        assertEquals("yyy", changeXY("yxy"));
+        assertEquals("h", changeXY("h"));
+        assertEquals("yyy", changeXY("xxx"));
+        assertEquals("yXy", changeXY("xXx"));
+
+    }
+
+    public String changeXY(String str) {
+        return changeXY(new StringBuilder(str), 0).toString();
+    }
+
+    public StringBuilder changeXY(StringBuilder str, int curr) {
+
+        if (curr >= str.length()) {
+            return str;
+        }
+
+        if (str.charAt(curr) == 'x') {
+            str.setCharAt(curr, 'y');
+        }
+
+        return changeXY(str, ++curr);
+    }
 }
