@@ -5,6 +5,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.net.ssl.SSLContext;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by prateek on 2/11/17.
  */
@@ -192,5 +196,22 @@ public class ProblemsTest {
         mem.put(num, current);
 
         return current;
+    }
+
+    @Test
+    public void testSumDigits() {
+        assertEquals(10, sumDigits(145));
+        assertEquals(32, sumDigits(8987));
+        assertEquals(3, sumDigits(3));
+        assertEquals(0, sumDigits(0));
+    }
+
+    public int sumDigits(int num) {
+
+        if (num == 0) {
+            return 0;
+        }
+
+        return num % 10 + sumDigits(num / 10);
     }
 }
