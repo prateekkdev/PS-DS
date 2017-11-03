@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.net.ssl.SSLContext;
 
@@ -463,5 +464,95 @@ public class ProblemsTest {
         }
 
         return changeXY(str, ++curr);
+    }
+
+    @Test
+    public void testChangePi() {
+        assertEquals("", changePi(""));
+        assertEquals("hey", changePi("hey"));
+        assertEquals("3.14", changePi("pi"));
+        assertEquals("3.143.14", changePi("pipi"));
+        assertEquals("hey3.14hello", changePi("heypihello"));
+        assertEquals("heyheyhey", changePi("heyheyhey"));
+        assertEquals("hey3.14", changePi("heypi"));
+    }
+
+    public String changePi(String str) {
+        return getChangePi(new StringBuilder(str), 0).toString();
+    }
+
+    public StringBuilder getChangePi(StringBuilder str, int curr) {
+
+        if (curr >= str.length() - 1) {
+            return str;
+        }
+
+        if (str.charAt(curr) == 'p' && str.charAt(curr + 1) == 'i') {
+            str.replace(curr, curr + 2, "3.14");
+            return getChangePi(str, curr + 4);
+        } else {
+            return getChangePi(str, ++curr);
+        }
+    }
+
+    @Test
+    public void testKthLastElementLinkedList() {
+
+
+    }
+
+    @Test
+    public void testEndX() {
+        assertEquals("", endX(""));
+        assertEquals("hey", endX("hey"));
+        assertEquals("s-max", endX("x-mas"));
+        assertEquals("oheylhelxxx", endX("xheyxhellox"));
+    }
+
+    public String endX(String str) {
+
+        if (str.length() == 0) {
+            return str;
+        }
+
+        int last = findLast(str, 'x', str.length() - 1);
+
+        return getEndX(new StringBuilder(str), 0, last).toString();
+    }
+
+    public int findLast(String str, char c, int last) {
+
+        if (last == 0) {
+            return 0;
+        }
+
+        if (str.charAt(last) == c) {
+            return findLast(str, c, last - 1);
+        }
+
+        return last;
+    }
+
+    public StringBuilder getEndX(StringBuilder str, int first, int last) {
+
+        if (first > last) {
+            return str;
+        }
+
+        if (str.charAt(first) == 'x') {
+            swap(str, first, last--);
+        }
+
+        return getEndX(str, ++first, last);
+    }
+
+    public StringBuilder swap(StringBuilder str, int index1, int index2) {
+
+        char c = str.charAt(index1);
+
+        str.setCharAt(index1, str.charAt(index2));
+        str.setCharAt(index2, c);
+
+        return str;
     }
 }
