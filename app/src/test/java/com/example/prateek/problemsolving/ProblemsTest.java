@@ -3,6 +3,7 @@ package com.example.prateek.problemsolving;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by prateek on 2/11/17.
@@ -132,5 +133,64 @@ public class ProblemsTest {
         }
 
         System.out.print("}");
+    }
+
+
+    @Test
+    public void testFibNormal() {
+
+        System.out.println("Fib 0: " + fib(0));
+
+        System.out.println("Fib 3: " + fib(3));
+
+        System.out.println("Fib 10: " + fib(10));
+
+        System.out.println("Fib 10: " + fib(45));
+    }
+
+    public int fib(int num) {
+
+        if (num == 0) {
+            return 0;
+        }
+
+        if (num == 1) {
+            return 1;
+        }
+
+        return fib(num - 1) + fib(num - 2);
+    }
+
+    @Test
+    public void testFibDP() {
+        System.out.println("Fib 0: " + fibDP(0));
+
+        System.out.println("Fib 3: " + fibDP(3));
+
+        System.out.println("Fib 10: " + fibDP(10));
+
+        System.out.println("Fib 10: " + fibDP(45));
+    }
+
+    public int fibDP(int num) {
+
+        HashMap<Integer, Integer> mem = new HashMap<>();
+        mem.put(0, 0);
+        mem.put(1, 1);
+
+        return fibDP(num, mem);
+    }
+
+    private int fibDP(int num, HashMap<Integer, Integer> mem) {
+
+        if (mem.containsKey(num)) {
+            return mem.get(num);
+        }
+
+        int current = fibDP(num - 1, mem) + fibDP(num - 2, mem);
+
+        mem.put(num, current);
+
+        return current;
     }
 }
