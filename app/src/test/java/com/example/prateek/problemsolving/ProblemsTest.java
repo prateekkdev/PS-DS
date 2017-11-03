@@ -1,5 +1,7 @@
 package com.example.prateek.problemsolving;
 
+import android.support.v4.util.Pair;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.HashMap;
 import javax.net.ssl.SSLContext;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 /**
  * Created by prateek on 2/11/17.
@@ -272,5 +275,90 @@ public class ProblemsTest {
 
         return 2 + bunnyEars2(bunnies - 1);
 
+    }
+
+    @Test
+    // http://codingbat.com/prob/p194781
+    public void testTriangle() {
+        assertEquals(0, triangleBlocks(0));
+        assertEquals(1, triangleBlocks(1));
+        assertEquals(3, triangleBlocks(2));
+        assertEquals(6, triangleBlocks(3));
+        assertEquals(10, triangleBlocks(4));
+        assertEquals(15, triangleBlocks(5));
+        assertEquals(21, triangleBlocks(6));
+    }
+
+    /**
+     * f(n) = n + f(n-1)
+     *
+     * @param row
+     * @return
+     */
+    public int triangleBlocks(int row) {
+
+        if (row == 0) {
+            return 0;
+        }
+
+        return row + triangleBlocks(row - 1);
+    }
+
+    @Test
+    // http://codingbat.com/prob/p101409
+    public void testCount7() {
+
+        assertEquals(0, count7(18934));
+        assertEquals(0, count7(0));
+        assertEquals(1, count7(7));
+        assertEquals(2, count7(77));
+        assertEquals(2, count7(8707));
+        assertEquals(5, count7(77777));
+        assertEquals(2, count7(7170008));
+    }
+
+    private int count7(int num) {
+
+        if (num == 0) {
+            return 0;
+        }
+
+        return (num % 10 == 7 ? 1 : 0) + count7(num / 10);
+    }
+
+    @Test
+    // http://codingbat.com/prob/p192383
+    public void testCount8() {
+
+        assertEquals(0, count8(0));
+        assertEquals(0, count8(0));
+        assertEquals(1, count8(8907));
+        assertEquals(1, count8(8));
+        assertEquals(3, count8(88));
+        assertEquals(2, count8(8989));
+        assertEquals(5, count8(898878));
+
+    }
+
+    public int count8(int num) {
+        return getCountOf8(num).second;
+    }
+
+    public Pair<Boolean, Integer> getCountOf8(int num) {
+
+        if (num == 0) {
+            return new Pair<>(false, 0);
+        }
+
+        Pair<Boolean, Integer> prev = getCountOf8(num / 10);
+
+        int value = prev.second;
+        if (prev.first && num % 10 == 8) {
+            value = value + 2;
+        } else if (num % 10 == 8) {
+            value = value + 1;
+        }
+
+        return new Pair<>(num % 10 == 8, value);
     }
 }
