@@ -214,4 +214,63 @@ public class ProblemsTest {
 
         return num % 10 + sumDigits(num / 10);
     }
+
+    @Test
+    public void testFactorial() {
+
+        assertEquals(1, fact(0));
+        assertEquals(1, fact(1));
+        assertEquals(120, fact(5));
+        assertEquals(40320, fact(8));
+
+    }
+
+    public int fact(int num) {
+        if (num == 0) {
+            return 1;
+        }
+        return num * fact(num - 1);
+    }
+
+    @Test
+    // http://codingbat.com/prob/p183649
+    public void testBunnyEars() {
+        assertEquals(0, bunnyEars(0));
+        assertEquals(2, bunnyEars(1));
+        assertEquals(10, bunnyEars(5));
+        assertEquals(50, bunnyEars(25));
+    }
+
+    public int bunnyEars(int bunnies) {
+
+        if (bunnies == 0) {
+            return 0;
+        }
+
+        return 2 + bunnyEars(bunnies - 1);
+    }
+
+    @Test
+    // http://codingbat.com/prob/p107330
+    public void testBunnies2() {
+        assertEquals(0, bunnyEars2(0));
+        assertEquals(2, bunnyEars2(1));
+        assertEquals(5, bunnyEars2(2));
+        assertEquals(22, bunnyEars2(9));
+        assertEquals(25, bunnyEars2(10));
+    }
+
+    public int bunnyEars2(int bunnies) {
+
+        if (bunnies == 0) {
+            return 0;
+        }
+
+        if (bunnies % 2 == 0) {
+            return 3 + bunnyEars2(bunnies - 1);
+        }
+
+        return 2 + bunnyEars2(bunnies - 1);
+
+    }
 }
