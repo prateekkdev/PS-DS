@@ -555,4 +555,33 @@ public class ProblemsTest {
 
         return str;
     }
+
+    @Test
+    public void testFindAllPath() {
+
+        boolean[][] arr1 = new boolean[][]{
+                {true, false, true},
+                {true, false, true},
+                {true, true, true}};
+
+        int totalPath1 = path(arr1, 0, 0);
+
+        System.out.println("Total Path: " + totalPath1);
+    }
+
+    int path(boolean[][] arr, int r, int c) {
+
+        if (!isValid(arr, r, c)) {
+            return 0;
+        }
+
+        return path(arr, r + 1, c) + path(arr, r, c + 1);
+    }
+
+    boolean isValid(boolean[][] arr, int r, int c) {
+        if (r < arr.length && c < arr[r].length && arr[r][c]) {
+            return true;
+        }
+        return false;
+    }
 }
