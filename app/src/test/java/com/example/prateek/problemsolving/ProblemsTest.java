@@ -559,11 +559,52 @@ public class ProblemsTest {
     @Test
     public void testFindAllPath() {
 
+        assertEquals(0, path(new boolean[][]{}));
+
+        assertEquals(1, path(new boolean[][]{
+                {true}
+        }));
+
+        assertEquals(1, path(new boolean[][]{
+                {true, true},
+                {false, true}
+        }));
+
+        assertEquals(2, path(new boolean[][]{
+                {true, true},
+                {true, true}
+        }));
+
         assertEquals(0,
                 path(new boolean[][]{
                         {true, false, true},
                         {true, false, true},
                         {true, false, true}}));
+
+        assertEquals(1, path(new boolean[][]{
+                {true, true, true},
+                {false, false, true},
+                {false, false, true}
+        }));
+
+        assertEquals(2, path(new boolean[][]{
+                {true, true, true},
+                {true, false, true},
+                {true, true, true}
+        }));
+
+        assertEquals(6, path(new boolean[][]{
+                {true, true, true},
+                {true, true, true},
+                {true, true, true}
+        }));
+
+        assertEquals(2, path(new boolean[][]{
+                {true, true, true},
+                {true, false, true},
+                {true, false, true},
+                {true, true, true}
+        }));
     }
 
     public int path(boolean[][] arr) {
