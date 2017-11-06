@@ -562,7 +562,7 @@ public class ProblemsTest {
         boolean[][] arr1 = new boolean[][]{
                 {true, false, true},
                 {true, false, true},
-                {true, true, true}};
+                {true, false, true}};
 
         int totalPath1 = path(arr1, 0, 0);
 
@@ -573,6 +573,10 @@ public class ProblemsTest {
 
         if (!isValid(arr, r, c)) {
             return 0;
+        }
+
+        if (r == arr.length - 1 && c == arr[r].length - 1) {
+            return 1;
         }
 
         return path(arr, r + 1, c) + path(arr, r, c + 1);
