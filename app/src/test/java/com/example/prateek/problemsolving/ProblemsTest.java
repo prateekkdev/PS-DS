@@ -738,7 +738,34 @@ public class ProblemsTest {
 
     }
 
+    class Block {
+        int row;
+        int col;
+
+        Block(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            Block block = (Block) obj;
+            if (block.row == row && block.col == col) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return row;
+        }
+    }
+
+    private HashMap<Block, Integer> mem = new HashMap();
+
     public long path(boolean[][] arr) {
+        mem.clear();
         return getPath(arr, 0, 0);
     }
 
@@ -752,7 +779,15 @@ public class ProblemsTest {
             return 1;
         }
 
-        return getPath(arr, r + 1, c) + getPath(arr, r, c + 1);
+        Block block = new Block(r, c);
+
+        if (mem.containsKey(block)) {
+            return mem.get(block);
+        } else {
+            int path = getPath(arr, r + 1, c) + getPath(arr, r, c + 1);
+            mem.put(block, path);
+            return path;
+        }
     }
 
     private boolean isValid(boolean[][] arr, int r, int c) {
