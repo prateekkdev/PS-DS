@@ -3,6 +3,8 @@ package com.example.prateek.problemsolving;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.LinkedList;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
@@ -12,48 +14,64 @@ import static org.junit.Assert.*;
 public class PLinkedListTest {
 
     @Test
-    public void add() throws Exception {
+    public void testFindAtIndexPositive() {
 
-
-    }
-
-    @Test
-    public void addFirst() throws Exception {
-
-        PLinkedList list = new PLinkedList();
-
+        PLinkedList<Integer> list = new PLinkedList<>();
         list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+        list.add(50);
 
-
-        assertThat(list.size(), is(1));
-
-        list.remove();
-
-        assertThat(list.size(), is(0));
+        assertEquals(40, (long) list.find(2));
     }
 
     @Test
-    public void addLast() throws Exception {
+    public void testFindAtIndexNegative() {
+
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+        list.add(50);
+
+        assertEquals(null, list.find(7));
     }
 
     @Test
-    public void remove() throws Exception {
+    public void findFirstPositive() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+        list.add(50);
+
+        assertEquals(50, (long) list.findFirst());
     }
 
     @Test
-    public void removeFirst() throws Exception {
+    public void findFirstNegative() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        assertEquals(null, list.findFirst());
     }
 
     @Test
-    public void remove1() throws Exception {
+    public void findLastPositive() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+        list.add(50);
+
+        assertEquals(10, (long) list.findLast());
     }
 
     @Test
-    public void removeLast() throws Exception {
+    public void findLastNegative() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        assertEquals(null, list.findLast());
     }
-
-    @Test
-    public void size() throws Exception {
-    }
-
 }

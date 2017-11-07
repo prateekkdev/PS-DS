@@ -138,12 +138,13 @@ public class PLinkedList<T> {
             return null;
         }
 
-        int current = 0;
+        int current = 1;
 
         PNode node = head;
 
         while (node.next != null && current < index) {
             node = node.next;
+            current++;
         }
 
         if (current == index) {
