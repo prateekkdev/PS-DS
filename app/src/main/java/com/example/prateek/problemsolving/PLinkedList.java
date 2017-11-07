@@ -26,6 +26,7 @@ public class PLinkedList<T> {
 
         if (head == null) {
             head = dataNode;
+            return;
         }
 
         PNode node = head;
