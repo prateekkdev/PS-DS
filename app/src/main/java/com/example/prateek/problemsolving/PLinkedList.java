@@ -26,6 +26,7 @@ public class PLinkedList<T> {
 
         if (head == null) {
             head = dataNode;
+            size++;
             return;
         }
 
@@ -36,6 +37,7 @@ public class PLinkedList<T> {
         }
 
         node.next = dataNode;
+        size++;
     }
 
     void remove() {
@@ -55,6 +57,7 @@ public class PLinkedList<T> {
         }
 
         head = head.next;
+        size--;
     }
 
     public void remove(T data) {

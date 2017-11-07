@@ -1,6 +1,10 @@
 package com.example.prateek.problemsolving;
 
+import android.support.v4.widget.TextViewCompat;
+
 import org.junit.Test;
+
+import kotlin.annotation.Target;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -155,5 +159,55 @@ public class PLinkedListTest {
         list.remove(30);
 
         assertThat(false, is(list.isData(30)));
+    }
+
+    @Test
+    public void testSizeAddFirst() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.addFirst(10);
+        list.addFirst(20);
+        list.addFirst(30);
+        list.addFirst(40);
+
+        assertEquals(4, list.size());
+    }
+
+    @Test
+    public void testSizeAddLast() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.addLast(10);
+        list.addLast(20);
+        list.addLast(30);
+
+        assertEquals(3, list.size());
+    }
+
+    @Test
+    public void testSizeRemoveFirst() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.addLast(10);
+        list.addLast(20);
+        list.addLast(30);
+
+        list.removeFirst();
+        assertEquals(2, list.size());
+    }
+
+    @Test
+    public void testSizeRemoveLast() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.addLast(10);
+        list.addLast(20);
+        list.addLast(30);
+
+        list.removeLast();
+        assertEquals(2, list.size());
+    }
+
+    @Test
+    public void testSizeNegativeNoElement() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+
+        assertEquals(0, list.size());
     }
 }
