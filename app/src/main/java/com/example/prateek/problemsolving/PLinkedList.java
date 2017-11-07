@@ -108,6 +108,51 @@ public class PLinkedList<T> {
 
     }
 
+    public T findFirst() {
+
+        if (head == null) {
+            return null;
+        }
+
+        return head.data;
+    }
+
+    public T findLast() {
+
+        if (head == null) {
+            return null;
+        }
+
+        PNode node = head;
+
+        while (node.next != null) {
+            node = node.next;
+        }
+
+        return node.data;
+    }
+
+    public T find(int index) {
+
+        if (head == null) {
+            return null;
+        }
+
+        int current = 0;
+
+        PNode node = head;
+
+        while (node.next != null && current < index) {
+            node = node.next;
+        }
+
+        if (current == index) {
+            return node.data;
+        }
+
+        return null;
+    }
+
     public int size() {
         return size;
     }
