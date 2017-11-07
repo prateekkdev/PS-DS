@@ -1,13 +1,9 @@
 package com.example.prateek.problemsolving;
 
 import org.junit.Test;
-import org.mockito.Mock;
-
-import java.util.LinkedList;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import static org.mockito.asm.tree.InsnList.check;
 
 /**
  * Created by prateek on 6/11/17.
@@ -24,7 +20,7 @@ public class PLinkedListTest {
         list.add(40);
         list.add(50);
 
-        assertEquals(40, (long) list.find(2));
+        assertEquals(40, (long) list.findAt(2));
     }
 
     @Test
@@ -37,7 +33,7 @@ public class PLinkedListTest {
         list.add(40);
         list.add(50);
 
-        assertEquals(null, list.find(7));
+        assertEquals(null, list.findAt(7));
     }
 
     @Test
@@ -77,6 +73,31 @@ public class PLinkedListTest {
     }
 
     @Test
+    public void testIsDataPositive() {
+
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.addFirst(10);
+        list.addFirst(20);
+        list.addFirst(30);
+        list.addFirst(40);
+
+        assertThat(true, is(list.isData(20)));
+    }
+
+
+    @Test
+    public void testIsDataNegative() {
+
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.addFirst(10);
+        list.addFirst(20);
+        list.addFirst(30);
+        list.addFirst(40);
+
+        assertThat(false, is(list.isData(1320)));
+    }
+
+    @Test
     public void testAddFirst() {
 
         PLinkedList<Integer> list = new PLinkedList<>();
@@ -97,5 +118,42 @@ public class PLinkedListTest {
         list.addLast(40);
 
         assertThat(10, is(list.findFirst()));
+    }
+
+    @Test
+    public void testRemoveFirst() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.addLast(10);
+        list.addLast(20);
+        list.addLast(30);
+        list.addLast(40);
+
+        list.removeFirst();
+        assertThat(20, is(list.findFirst()));
+    }
+
+    @Test
+    public void testRemoveLast() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+
+        list.removeLast();
+        assertThat(20, is(list.findLast()));
+    }
+
+    @Test
+    public void testRemoveData() {
+        PLinkedList<Integer> list = new PLinkedList<>();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+
+        list.remove(30);
+
+        assertThat(false, is(list.isData(30)));
     }
 }

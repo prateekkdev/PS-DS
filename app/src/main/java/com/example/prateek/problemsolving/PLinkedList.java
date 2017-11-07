@@ -82,8 +82,10 @@ public class PLinkedList<T> {
             if (node.next.data.equals(data)) {
                 node.next = node.next.next;
                 size--;
+                return;
             }
 
+            node = node.next;
         }
     }
 
@@ -133,7 +135,7 @@ public class PLinkedList<T> {
         return node.data;
     }
 
-    public T find(int index) {
+    public T findAt(int index) {
 
         if (head == null) {
             return null;
@@ -153,6 +155,26 @@ public class PLinkedList<T> {
         }
 
         return null;
+    }
+
+    public boolean isData(T data) {
+
+        if (head == null) {
+            return false;
+        }
+
+        PNode node = head;
+
+        while (node.next != null) {
+
+            if (node.data.equals(data)) {
+                return true;
+            }
+
+            node = node.next;
+        }
+
+        return false;
     }
 
     public int size() {
