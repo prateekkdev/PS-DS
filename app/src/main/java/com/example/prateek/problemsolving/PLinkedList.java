@@ -168,14 +168,6 @@ public class PLinkedList<T> {
             this.data = data;
         }
 
-        public PNode next() {
-            return next;
-        }
-
-        public T data() {
-            return data;
-        }
-
         @Override
         public boolean equals(Object obj) {
             if (this.data == ((PNode) obj).data) {
