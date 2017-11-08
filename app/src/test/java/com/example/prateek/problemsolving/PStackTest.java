@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -147,4 +148,164 @@ public class PStackTest {
 
         assertEquals(null, stack.get(4));
     }
+
+    @Test
+    public void testForLargeStack() {
+
+        PStack<String> stack = new PStack<>(5);
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+        stack.push("word6");
+        stack.push("word7");
+        stack.push("word8");
+        stack.push("word9");
+        stack.push("word10");
+        stack.push("word11");
+        stack.push("word12");
+        stack.push("word13");
+
+        assertEquals("word13", stack.peek());
+    }
+
+    @Test
+    public void testSizeWhenDefaultSmall() {
+        PStack<String> stack = new PStack<>();
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+
+        assertEquals(5, stack.size());
+    }
+
+    @Test
+    public void testSizeWhenDefaultLarge() {
+        PStack<String> stack = new PStack<>();
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+        stack.push("word6");
+        stack.push("word7");
+        stack.push("word8");
+        stack.push("word9");
+        stack.push("word10");
+        stack.push("word11");
+        stack.push("word12");
+        stack.push("word13");
+
+        assertEquals(13, stack.size());
+    }
+
+    @Test
+    public void testSizeWhenCustomSmall() {
+        PStack<String> stack = new PStack<>(8);
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+
+        assertEquals(5, stack.size());
+    }
+
+    @Test
+    public void testSizeWhenCustomLarge() {
+        PStack<String> stack = new PStack<>(10);
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+        stack.push("word6");
+        stack.push("word7");
+        stack.push("word8");
+        stack.push("word9");
+        stack.push("word10");
+        stack.push("word11");
+        stack.push("word12");
+        stack.push("word13");
+
+        assertEquals(13, stack.size());
+    }
+
+    @Test
+    public void testCapacityWhenDefaultSmall() {
+        PStack<String> stack = new PStack<>();
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+
+        assertEquals(10, stack.capacity());
+    }
+
+    @Test
+    public void testCapacityWhenDefaultLarge() {
+        PStack<String> stack = new PStack<>();
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+        stack.push("word6");
+        stack.push("word7");
+        stack.push("word8");
+        stack.push("word9");
+        stack.push("word10");
+        stack.push("word11");
+        stack.push("word12");
+        stack.push("word13");
+
+        assertEquals(20, stack.capacity());
+    }
+
+    @Test
+    public void testCapacityWhenCustomSmall() {
+        PStack<String> stack = new PStack<>(8);
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+
+        assertEquals(8, stack.capacity());
+    }
+
+    @Test
+    public void testCapacityWhenCustomLarge() {
+        PStack<String> stack = new PStack<>(9);
+
+        stack.push("word1");
+        stack.push("word2");
+        stack.push("word3");
+        stack.push("word4");
+        stack.push("word5");
+        stack.push("word6");
+        stack.push("word7");
+        stack.push("word8");
+        stack.push("word9");
+        stack.push("word10");
+        stack.push("word11");
+        stack.push("word12");
+        stack.push("word13");
+
+        assertEquals(18, stack.capacity());
+    }
+
+
 }

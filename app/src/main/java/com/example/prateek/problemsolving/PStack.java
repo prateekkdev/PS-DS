@@ -107,4 +107,12 @@ public class PStack<T> {
 
         return -1;
     }
+
+    public int size() {
+        return currentSize;
+    }
+
+    public int capacity() {
+        return arr.length;
+    }
 }
