@@ -77,4 +77,34 @@ public class PStack<T> {
         }
         return false;
     }
+
+    public T get(int index) {
+
+        if (index > currentSize - 1) {
+            return null;
+        }
+
+        return (T) arr[index];
+    }
+
+    public boolean contains(T data) {
+        if (search(data) != -1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public int search(T data) {
+
+        for (int index = 0; index < arr.length; index++) {
+
+            if (arr[index].equals(data)) {
+                return index;
+            }
+
+        }
+
+        return -1;
+    }
 }
