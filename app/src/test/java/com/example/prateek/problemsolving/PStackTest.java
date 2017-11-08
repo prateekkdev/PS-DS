@@ -81,14 +81,14 @@ public class PStackTest {
         stack.push(30);
         stack.push(40);
 
-        assertEquals(null, stack.search(80));
+        assertEquals(-1, stack.search(80));
     }
 
     @Test
     public void testSearchEmpty() {
         PStack<Integer> stack = new PStack<>();
 
-        assertEquals(null, stack.search(80));
+        assertEquals(-1, stack.search(80));
     }
 
 
