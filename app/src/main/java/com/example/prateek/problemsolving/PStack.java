@@ -97,7 +97,7 @@ public class PStack<T> {
 
     public int search(T data) {
 
-        for (int index = 0; index < arr.length; index++) {
+        for (int index = 0; index < currentSize; index++) {
 
             if (arr[index].equals(data)) {
                 return index;
