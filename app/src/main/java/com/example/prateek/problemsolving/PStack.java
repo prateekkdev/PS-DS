@@ -72,7 +72,7 @@ public class PStack<T> {
     }
 
     public boolean isEmpty() {
-        if (arr.length == 0) {
+        if (currentSize == 0) {
             return true;
         }
         return false;
