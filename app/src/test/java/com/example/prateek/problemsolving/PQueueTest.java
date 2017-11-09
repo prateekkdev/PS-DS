@@ -151,4 +151,73 @@ public class PQueueTest {
 
         assertEquals(true, queue.isEmpty());
     }
+
+    @Test
+    public void testPeekAfterLinerDynamicAutoSizeIncrease() {
+
+        PQueue<String> queue = new PQueue<>(3);
+
+        queue.enqueue("word1");
+        queue.enqueue("word2");
+        queue.enqueue("word3");
+        queue.enqueue("word4");
+        queue.enqueue("word5");
+
+        assertEquals("word1", queue.peek());
+    }
+
+    @Test
+    public void testPeekAfterCircularDynamicAutoSizeIncrease() {
+
+        PQueue<String> queue = new PQueue<>(3);
+
+        queue.enqueue("word1");
+        queue.enqueue("word2");
+        queue.enqueue("word3");
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue("word4");
+        queue.enqueue("word5");
+        queue.enqueue("word6");
+        queue.enqueue("word7");
+
+        assertEquals("word3", queue.peek());
+    }
+
+    @Test
+    public void testDequeueSequenceWhenDynamicSizeIncrease() {
+
+        PQueue<String> queue = new PQueue<>(2);
+
+        queue.enqueue("word1");
+        queue.enqueue("word2");
+        queue.enqueue("word3");
+
+        assertEquals("word1", queue.dequeue());
+        assertEquals("word2", queue.dequeue());
+        assertEquals("word3", queue.dequeue());
+        assertEquals(null, queue.dequeue());
+
+        assertEquals(true, queue.isEmpty());
+    }
+
+    @Test
+    public void testEmptyAfterDynamicAutoSizeIncreaseThenEmpty() {
+
+        PQueue<String> queue = new PQueue<>(3);
+
+        queue.enqueue("word1");
+        queue.enqueue("word2");
+        queue.enqueue("word3");
+        queue.enqueue("word4");
+        queue.enqueue("word5");
+
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+
+        assertEquals(true, queue.isEmpty());
+    }
 }
