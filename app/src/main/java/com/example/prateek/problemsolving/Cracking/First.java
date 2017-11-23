@@ -50,4 +50,40 @@ public class First {
 
         return true;
     }
+
+
+    public boolean isPalindromePermutation(String str) {
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < str.length(); i++) {
+
+            char c = str.charAt(i);
+
+            int count = 1;
+            if (map.containsKey(c)) {
+                count = map.get(c) + count;
+            }
+
+            map.put(c, count);
+        }
+
+        // If no odd or only one odd, then only palindrome
+
+        boolean isFoundOdd = false;
+
+        for (int count : map.values()) {
+
+            if (count % 2 == 1) {
+
+                if (isFoundOdd) {
+                    return false;
+                }
+
+                isFoundOdd = true;
+            }
+        }
+
+        return true;
+    }
 }

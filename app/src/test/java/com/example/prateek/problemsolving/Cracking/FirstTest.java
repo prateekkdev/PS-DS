@@ -11,12 +11,15 @@ import static org.junit.Assert.assertEquals;
 
 public class FirstTest {
 
-    First first;
+    private First first;
 
     @Before
     public void init() {
         first = new First();
     }
+
+
+    // *** Permutation Test ****
 
     @Test
     public void testIsPermutation_ValidEmpty() {
@@ -56,5 +59,44 @@ public class FirstTest {
     @Test
     public void testIsPermutation_InvalidLarge() {
         assertEquals(false, first.isPermutation("abcdefghi", "abcdefgdi"));
+    }
+
+
+    // *** PalindromPermutation Test ***
+
+    @Test
+    public void testIsPalindromePermutation_Empty() {
+        assertEquals(true, first.isPalindromePermutation(""));
+    }
+
+    @Test
+    public void testIsPalindromePermutation_Success_Small_NoOdd() {
+        assertEquals(true, first.isPalindromePermutation("aabb"));
+    }
+
+    @Test
+    public void testIsPalindromePermutation_Success_Small_OneOdd() {
+        assertEquals(true, first.isPalindromePermutation("aab"));
+    }
+
+    @Test
+    public void testIsPalindromePermutation_Success_Large_NoOdd() {
+        assertEquals(true, first.isPalindromePermutation("aabbddddbbcccccc"));
+    }
+
+
+    @Test
+    public void testIsPalindromePermutation_Success_Large_OneOdd() {
+        assertEquals(true, first.isPalindromePermutation("aabbddgggddbbcccccc"));
+    }
+
+    @Test
+    public void testIsPalindromePermutation_Failure_Small() {
+        assertEquals(false, first.isPalindromePermutation("ab"));
+    }
+
+    @Test
+    public void testIsPalindromePermutation_Failure_Large() {
+        assertEquals(false, first.isPalindromePermutation("abcdefabcdefabcdddd"));
     }
 }
