@@ -44,4 +44,9 @@ public class ChallengesStringsTest {
         assertEquals(2, challengesStrings.gemStones(new String[]{"abcdde", "baccd", "eeabg"}));
         assertEquals(3, challengesStrings.gemStones(new String[]{"abcdde", "baccd", "eecabg"}));
     }
+
+    @Test
+    public void testMakingAnagrams() {
+        assertEquals(4, challengesStrings.makingAnagrams("abc", "cde"));
+    }
 }

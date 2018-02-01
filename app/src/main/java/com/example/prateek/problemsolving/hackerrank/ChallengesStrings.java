@@ -1,5 +1,7 @@
 package com.example.prateek.problemsolving.hackerrank;
 
+import java.util.HashMap;
+
 /**
  * Created by admin on 1/31/18.
  */
@@ -158,11 +160,11 @@ public class ChallengesStrings {
      */
     public int gemStones(String[] arr) {
 
-        int[][] charCountArr = new int[arr.length][26];
+        boolean[][] charCountArr = new boolean[arr.length][26];
 
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length(); j++) {
-                charCountArr[i][arr[i].charAt(j) - 'a']++;
+                charCountArr[i][arr[i].charAt(j) - 'a'] = true;
             }
         }
 
@@ -173,7 +175,7 @@ public class ChallengesStrings {
             boolean zeroInColumn = false;
 
             for (int i = 0; i < arr.length; i++) {
-                if (charCountArr[i][j] == 0) {
+                if (charCountArr[i][j] == false) {
                     zeroInColumn = true;
                     break;
                 }
@@ -184,8 +186,63 @@ public class ChallengesStrings {
             }
         }
 
-
         return totalGems;
+    }
+
+
+    /**
+     * making anagrams, after reducing string a and b.
+     * <p>
+     * It is guaranteed that  and  consist of lowercase English letters.
+     * <p>
+     * https://www.hackerrank.com/challenges/making-anagrams/problem
+     *
+     * @param s1
+     * @param s2
+     * @return
+     */
+    public int makingAnagrams(String s1, String s2) {
+
+        int totalDeletions = 0;
+
+        int[] arr1 = getCharacterOccurenceArray(s1);
+        int[] arr2 = getCharacterOccurenceArray(s2);
+
+        for (int index = 0; index < 26; index++) {
+            totalDeletions += Math.abs(arr1[index] - arr2[index]);
+        }
+
+        return totalDeletions;
+    }
+
+    private int[] getCharacterOccurenceArray(String str) {
+
+        int[] charArr = new int[26];
+
+        for (int index = 0; index < str.length(); index++) {
+            charArr[str.charAt(index) - 'a']++;
+        }
+
+        return charArr;
+    }
+
+    private HashMap<Character, Integer> getCharOccurenceMap(String str) {
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int index = 0; index < str.length(); index++) {
+
+            char c = str.charAt(index);
+
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+
+        }
+
+        return map;
     }
 
 }
