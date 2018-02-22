@@ -17,7 +17,7 @@ import static org.junit.Assert.assertSame;
  * Created by prateek on 2/11/17.
  */
 
-public class ProblemsTest {
+public class ChessProblemsTest {
 
     @Test
     public void firstProblem() {

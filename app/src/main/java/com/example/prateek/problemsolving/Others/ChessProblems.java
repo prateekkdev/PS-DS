@@ -7,9 +7,9 @@ import java.util.List;
  * Created by admin on 2/21/18.
  */
 
-public class Problems {
+public class ChessProblems {
 
-    class Position {
+    public static class Position {
         private int row;
         private int col;
 
@@ -78,5 +78,34 @@ public class Problems {
             }
         }
         return true;
+    }
+
+    public boolean checkIfInputIsValid(Position king, Position queen) {
+
+        if (king.row >= 0 && king.col >= 0 && king.row < 8 && king.col < 8 && queen.row >= 0 && queen.col >= 0 && queen.row < 8 && queen.col < 8) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Considering chess board is 8x8 ( This is only used for validation, not the core alog)
+     * Core algo could be used for nxn grid as well.
+     *
+     * @param king
+     * @param queen
+     * @return
+     */
+    public boolean isKingThreatenedByQueenInChessBoard(Position king, Position queen) {
+
+        if (!checkIfInputIsValid(king, queen)) {
+            throw new RuntimeException("Input not valid");
+        }
+
+        if (king.row == queen.row || king.col == queen.col || (Math.abs(king.row - queen.row) == Math.abs(king.col - queen.col))) {
+            return true;
+        }
+
+        return false;
     }
 }
