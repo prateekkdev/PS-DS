@@ -32,4 +32,43 @@ public class Implementation {
 
         return n * fact(n - 1);
     }
+
+    /**
+     * https://www.hackerrank.com/challenges/beautiful-days-at-the-movies/problem
+     */
+    public int beautifulDays(int i, int j, int k) {
+
+        int total = 0;
+
+        for (int day = i; day <= j; day++) {
+            if (isBeautiful(day, k)) {
+                total++;
+            }
+        }
+
+        return total;
+    }
+
+    public boolean isBeautiful(int day, int k) {
+
+        if ((day - reversedDay(day)) % k == 0) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public int reversedDay(int day) {
+        int reverse = day % 10;
+        day = day / 10;
+
+        while (day > 0) {
+            reverse = reverse * 10 + (day % 10);
+            day = day / 10;
+        }
+
+        return reverse;
+    }
+
 }

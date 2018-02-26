@@ -22,8 +22,11 @@ public class ImplementationTest {
 
     @Test
     public void testFact() {
-
         assertEquals(120, implementation.fact(new BigInteger("5")));
+    }
 
+    @Test
+    public void testReverseDay() {
+        assertEquals(12548, implementation.reversedDay(84521));
     }
 }
