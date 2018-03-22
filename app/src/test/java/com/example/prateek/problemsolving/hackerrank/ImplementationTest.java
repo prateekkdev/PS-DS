@@ -29,4 +29,33 @@ public class ImplementationTest {
     public void testReverseDay() {
         assertEquals(12548, implementation.reversedDay(84521));
     }
+
+    @Test
+    public void testAcmICPCTeam() {
+
+        String[] str = new String[]{"10101",
+                "11100",
+                "11010",
+                "00101"};
+
+        assertEquals(null, implementation.acmTeam2(str));
+
+    }
+
+    @Test
+    public void testSqrt() {
+        assertEquals(4, implementation.findRoot(16));
+        assertEquals(7, implementation.findRoot(49));
+        assertEquals(7, implementation.findRoot(54));
+        assertEquals(8, implementation.findRoot(80));
+    }
+
+    @Test
+    public void testEncryption() {
+
+        String s = "haveaniceday";
+        String str = implementation.encryption(s);
+
+        assertEquals("hae and via ecy", str);
+    }
 }
